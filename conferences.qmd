@@ -1,0 +1,66 @@
+---
+title: "Conferences"
+date: today
+author:
+  - name: Dr. B. Braunstein
+    email: braunstein@dshs-koeln.de
+    url: https://www.bjoernbraunstein.com
+    affiliation: __German Sport University__ <br> Institute of Biomechanics and Orthopaedics <br> Institute of Movement- and Neuroscience
+    affiliation-url: https://www.dshs-koeln.de
+    orcid: 0000-0002-5173-8916
+format: 
+  html:
+    page-layout: full
+    #page-layout: custom
+    #page-layout: article
+---
+
+```{r, echo=FALSE, include=FALSE}
+library(readxl)
+library(tidyverse)
+library(DT)
+```
+
+
+
+```{r, echo=FALSE, include=FALSE}
+all <- read_excel("data_kongresse.xlsx", 
+                  col_types = c("logical",
+                                "numeric",
+                                "text",
+                                "text",
+                                "text",
+                                "date",
+                                "date",
+                                "date",
+                                "date"
+                                )
+                  )
+all$start <- as.Date(all$start)
+all$end <- as.Date(all$end)
+all$deadline <- as.Date(all$deadline)
+all$acceptance <- as.Date(all$acceptance)
+
+
+```
+
+```{r, echo=FALSE}
+#| column: page
+datatable(all,
+          width = '1100px',
+          escape = FALSE,
+          extensions = 'Buttons', 
+          options = list(
+            order = list(list(1,'desc')), #die Reihenfolge der Column startet bei '0'
+            pageLength=50,
+            autoWidth=TRUE,
+            dom = 'Bfrtip', 
+            buttons = list(I('colvis'),c('copy', 'csv', 'excel', 'pdf', 'print'))),
+          rownames = FALSE,
+          colnames = c('Attend', 'Year', 'Society','City', 'Country', 'Start', 'End', 'Deadline', 'Accept'),
+          #filter = 'top',
+          )
+```
+
+
+

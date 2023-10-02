@@ -1,0 +1,4 @@
+- source: conferences.qmd
+  quarto-pub:
+    - id: a404e66e-0ead-4c93-878c-f0ff0319a97d
+      url: 'https://biomechanics.quarto.pub/conferences'
